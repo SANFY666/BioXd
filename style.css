@@ -1,0 +1,328 @@
+/* --- Базові налаштування --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./assets/bgimg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Розмиття та затемнення головного фону */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
+/* --- Панель гучності (Виїжджає при наведенні) --- */
+.volume-container {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  display: flex;
+  align-items: center;
+  background: rgba(15, 15, 15, 0.5);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  height: 45px;
+  width: 45px;
+  overflow: hidden;
+  z-index: 100;
+  transition:
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s ease;
+}
+
+.volume-container:hover {
+  width: 160px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Кнопка гучності */
+.volume-btn {
+  width: 45px;
+  min-width: 45px;
+  height: 45px;
+  background: transparent;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Обгортка повзунка гучності */
+.volume-slider-wrapper {
+  flex: 1;
+  padding-right: 20px;
+  padding-left: 5px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition:
+    opacity 0.3s ease 0.1s,
+    transform 0.3s ease 0.1s;
+  display: flex;
+  align-items: center;
+}
+
+.volume-container:hover .volume-slider-wrapper {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Головний контейнер --- */
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Стиль Темного Скла --- */
+.glass-panel {
+  background: rgba(15, 15, 15, 0.55);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* --- Картка профілю --- */
+.profile-card {
+  padding: 45px 40px 35px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation-delay: 0.1s;
+}
+
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.username {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.8),
+    0 0 15px rgba(255, 255, 255, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.bio {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.location {
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Соціальні мережі */
+.socials {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 10px;
+}
+
+.social-btn {
+  color: white;
+  font-size: 1.6rem;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease,
+    filter 0.2s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.social-btn:hover {
+  transform: translateY(-4px);
+  color: #ffffff;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+}
+
+/* --- Аудіоплеєр --- */
+.audio-card {
+  padding: 20px 25px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  animation-delay: 0.2s;
+}
+
+.album-art {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.track-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.track-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+/* Спільні стилі для повзунків */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  width: 100%;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+  cursor: pointer;
+  background-image: linear-gradient(#ffffff, #ffffff);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.1s linear;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  transition: transform 0.1s;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.3);
+}
+
+#volume-slider {
+  background-size: 100% 100%;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: white;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.controls button:hover {
+  opacity: 0.8;
+  transform: scale(1.15);
+}
+
+.play-btn {
+  font-size: 1.5rem !important;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+}
