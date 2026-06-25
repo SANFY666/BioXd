@@ -119,3 +119,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// --- Ефект друкування в заголовку вкладки ---
+const titleText = "sanfy";
+let index = 0;
+let isDeleting = false;
+let currentText = "";
+
+function animateTitle() {
+  if (isDeleting) {
+    currentText = titleText.substring(0, index - 1);
+    index--;
+  } else {
+    currentText = titleText.substring(0, index + 1);
+    index++;
+  }
+
+  document.title = currentText || " "; // Пробіл, щоб заголовок не був порожнім
+
+  if (!isDeleting && index === titleText.length) {
+    setTimeout(() => (isDeleting = true), 2000); // Пауза перед стиранням
+  } else if (isDeleting && index === 0) {
+    isDeleting = false;
+  }
+
+  setTimeout(animateTitle, isDeleting ? 150 : 300); // Швидкість друку/стирання
+}
+
+animateTitle();
+
