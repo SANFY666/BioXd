@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       coverSrc: "./assets/album.jpg"
     },
     {
-      title: "Назва другого треку",
+      title: "BEMAX ARA ARA",
       audioSrc: "./assets/music2.mp3", // Не забудь завантажити цей файл у папку assets!
       coverSrc: "./assets/album2.jpg"  // І картинку теж
     },
