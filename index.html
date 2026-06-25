@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sanfy</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="volume-container">
+      <button class="volume-btn" id="mute-btn" aria-label="Mute Audio">
+        <i class="fas fa-volume-up" id="volume-icon"></i>
+      </button>
+      <div class="volume-slider-wrapper">
+        <input
+          type="range"
+          id="volume-slider"
+          min="0"
+          max="1"
+          value="1"
+          step="0.01"
+          aria-label="Volume Control"
+        />
+      </div>
+    </div>
+
+    <main class="container">
+      <section class="glass-panel profile-card">
+        <img src="./assets/ava.jpg" alt="Profile Avatar" class="avatar" />
+
+        <h1 class="username">sanfy</h1>
+        <p class="bio">
+          Can't stand living, can't afford dying...<br />
+          DM me for site/bot developing ↓
+        </p>
+
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i> Ukraine
+        </div>
+
+        <nav class="socials">
+          <a
+            href="https://discord.com/users/422409975751770113"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Discord"
+          >
+            <i class="fab fa-discord"></i>
+          </a>
+          <a
+            href="https://t.me/NAME"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Telegram"
+          >
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+          <a href="mailto:MAIL@gmail.com" class="social-btn" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </nav>
+      </section>
+
+      <section class="glass-panel audio-card" id="audio-card">
+        <audio id="audio" src="./assets/music.mp3" preload="metadata"></audio>
+
+        <img
+          src="./assets/album.jpg"
+          alt="Album Cover"
+          class="album-art"
+          id="album-art"
+        />
+
+        <div class="track-info">
+          <div class="track-title">CORTISOL BAIXO</div>
+          <div class="progress-wrapper">
+            <span id="current-time">0:00</span>
+            <input
+              type="range"
+              id="progress"
+              min="0"
+              max="100"
+              value="0"
+              step="0.1"
+              aria-label="Track Progress"
+            />
+            <span id="total-time">0:00</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button aria-label="Previous Track">
+            <i class="fas fa-step-backward"></i>
+          </button>
+          <button class="play-btn" id="play-btn" aria-label="Play or Pause">
+            <i class="fas fa-play" id="play-icon"></i>
+          </button>
+          <button aria-label="Next Track">
+            <i class="fas fa-step-forward"></i>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
