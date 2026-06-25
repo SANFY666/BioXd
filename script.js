@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       coverSrc: "./assets/album2.jpg"  // І картинку теж
     },
     {
-      title: "Назва третього треку",
+      title: "MONTAGEM YAMI",
       audioSrc: "./assets/music3.mp3",
       coverSrc: "./assets/album3.jpg"
     }
