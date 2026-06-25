@@ -11,8 +11,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const muteBtn = document.getElementById("mute-btn");
   const volumeIcon = document.getElementById("volume-icon");
 
+  // Логіка гучності 
+  const updateVolumeVisuals = (value) => {
+    volumeSlider.style.backgroundSize = `${value * 100}% 100%`;
+
+    if (value === 0) {
+      volumeIcon.className = "fas fa-volume-mute";
+    } else if (value < 0.5) {
+      volumeIcon.className = "fas fa-volume-down";
+    } else {
+      volumeIcon.className = "fas fa-volume-up";
+    }
+  };
+
+  // Встановлюємо початкову гучність 40%
   let isMuted = false;
-  let currentVolume = 1;
+  let currentVolume = 0.4; 
+  audio.volume = currentVolume;
+  volumeSlider.value = currentVolume;
+  updateVolumeVisuals(currentVolume);
 
   // --- Логіка відтворення ---
   const formatTime = (time) => {
@@ -79,19 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.currentTime = 0;
   });
 
-  // --- Логіка гучності ---
-  const updateVolumeVisuals = (value) => {
-    volumeSlider.style.backgroundSize = `${value * 100}% 100%`;
-
-    if (value === 0) {
-      volumeIcon.className = "fas fa-volume-mute";
-    } else if (value < 0.5) {
-      volumeIcon.className = "fas fa-volume-down";
-    } else {
-      volumeIcon.className = "fas fa-volume-up";
-    }
-  };
-
+  // --- Обробники подій для гучності ---
   volumeSlider.addEventListener("input", (e) => {
     const value = parseFloat(e.target.value);
     audio.volume = value;
